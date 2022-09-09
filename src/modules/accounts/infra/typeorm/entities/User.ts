@@ -1,7 +1,6 @@
 import { Expose } from "class-transformer";
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
-import { DefaultSerializer } from "v8";
 
 @Entity("users")
 class User {
@@ -33,11 +32,11 @@ class User {
   avatar_url(): string {
     switch (process.env.disk) {
       case "local":
-        return `${process.env.APP_API_URL}/avatar/${this.avatar}`
+        return `${process.env.APP_API_URL}/avatar/${this.avatar}`;
       case "s3":
-        return `${process.env.AWS_BUCKET_URL}/avatar/${this.avatar}`
+        return `${process.env.AWS_BUCKET_URL}/avatar/${this.avatar}`;
       default:
-        return null
+        return null;
     }
   }
 
