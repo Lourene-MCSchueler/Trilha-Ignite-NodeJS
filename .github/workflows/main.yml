@@ -28,9 +28,9 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
-          source: "., !node_modules, !ormconfig.json !docker-compose.yaml"
+          source: "., !node_modules, !ormconfig.json"
           target: "~/app/Trilha-Ignite-NodeJS"
-      
+
       - name: Update API
         uses: appleboy/ssh-action@master
         with:
@@ -43,5 +43,3 @@ jobs:
             yarn 
             ./node_modules/.bin/typeorm migration:run
             pm2 restart rentx_api
-            
-            
